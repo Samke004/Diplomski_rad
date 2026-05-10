@@ -1,0 +1,22 @@
+============================================================
+  TRAINING INFO — deeplabv3_resnet50
+  Started: 2026-04-22 12:33:31
+============================================================
+
+  model_name               : deeplabv3_resnet50
+  parameters               : 26.68M trainable / 26.68M total
+  device                   : cuda
+  epochs                   : 100
+  early_stop               : 15
+  batch_size               : 4
+  image_size               : 512x512
+  in_channels              : 4
+  num_classes              : 4
+  class_names              : ['background', 'trunk', 'branches', 'support']
+  train_samples            : 333
+  val_samples              : 31
+  optimizer                : Adam
+  scheduler                : CosineAnnealingLR
+  loss                     : CrossEntropy + Dice
+
+============================================================

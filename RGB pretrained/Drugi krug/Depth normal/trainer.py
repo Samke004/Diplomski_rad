@@ -1,0 +1,342 @@
+"""
+trainer.py — Training engines with detailed CSV logging.
+"""
+
+import os, csv, time, datetime
+from typing import Optional
+
+import numpy as np
+import torch
+import torch.nn as nn
+from torch.optim import Adam
+from torch.optim.lr_scheduler import CosineAnnealingLR
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+
+from losses import CrossEntropyDiceLoss, GANLoss, Pix2PixGeneratorLoss
+from metrics import compute_all_metrics, aggregate_metrics, CLASS_NAMES
+
+
+class CSVLogger:
+    COLUMNS = [
+        "epoch", "timestamp", "elapsed_s", "train_loss", "val_loss", "lr",
+        "mean_iou", "mean_boundary_f1", "overall_accuracy", "branch_recall",
+        "iou_background", "iou_trunk", "iou_branches", "iou_support",
+        "f1_background", "f1_trunk", "f1_branches", "f1_support",
+        "precision_background", "precision_trunk", "precision_branches", "precision_support",
+        "recall_background", "recall_trunk", "recall_branches", "recall_support",
+        "boundary_f1_background", "boundary_f1_trunk", "boundary_f1_branches", "boundary_f1_support",
+        "is_best",
+    ]
+
+    def __init__(self, model_name: str, log_dir: str = "logs"):
+        self.model_name = model_name
+        self.log_dir    = log_dir
+        os.makedirs(log_dir, exist_ok=True)
+        self.csv_path  = os.path.join(log_dir, f"{model_name}_log.csv")
+        self.info_path = os.path.join(log_dir, f"{model_name}_info.txt")
+        self.csv_file  = open(self.csv_path, "w", newline="")
+        self.writer    = csv.DictWriter(self.csv_file, fieldnames=self.COLUMNS)
+        self.writer.writeheader()
+        self.csv_file.flush()
+        self.start_time = time.time()
+        print(f"  CSV log → {self.csv_path}")
+
+    def write_info(self, info: dict):
+        with open(self.info_path, "w") as f:
+            f.write(f"{'='*60}\n  TRAINING INFO — {self.model_name}\n")
+            f.write(f"  Started: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n{'='*60}\n\n")
+            for k, v in info.items():
+                f.write(f"  {k:<25}: {v}\n")
+            f.write(f"\n{'='*60}\n")
+        print(f"  Info    → {self.info_path}")
+
+    def log_epoch(self, epoch, train_loss, val_loss, val_metrics, lr, elapsed_s, is_best):
+        row = {
+            "epoch": epoch,
+            "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "elapsed_s": round(elapsed_s, 1),
+            "train_loss": round(train_loss, 6),
+            "val_loss": round(val_loss, 6),
+            "lr": f"{lr:.2e}",
+            "is_best": int(is_best),
+        }
+        for col in self.COLUMNS:
+            if col not in row:
+                row[col] = round(float(val_metrics.get(col, float("nan"))), 6)
+        self.writer.writerow(row)
+        self.csv_file.flush()
+
+    def write_summary(self, best_iou, total_seconds):
+        h = int(total_seconds // 3600)
+        m = int((total_seconds % 3600) // 60)
+        s = int(total_seconds % 60)
+        with open(self.info_path, "a") as f:
+            f.write(f"\n  REZULTATI\n{'='*60}\n")
+            f.write(f"  Best val mIoU:    {best_iou:.4f}\n")
+            f.write(f"  Ukupno trajanje:  {h:02d}h {m:02d}m {s:02d}s\n")
+            f.write(f"  Završeno:         {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"{'='*60}\n")
+
+    def close(self):
+        self.csv_file.close()
+
+
+def _save_checkpoint(state, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    torch.save(state, path)
+    print(f"  Checkpoint saved → {path}")
+
+
+def _count_params(model):
+    total     = sum(p.numel() for p in model.parameters())
+    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    return f"{trainable/1e6:.2f}M trainable / {total/1e6:.2f}M total"
+
+
+class SegmentationTrainer:
+
+    def __init__(self, model, model_name, cfg, train_loader, val_loader, lr=1e-4):
+        self.model        = model.to(cfg.DEVICE)
+        self.model_name   = model_name
+        self.cfg          = cfg
+        self.train_loader = train_loader
+        self.val_loader   = val_loader
+        self.criterion    = CrossEntropyDiceLoss(num_classes=cfg.NUM_CLASSES)
+        self.optimizer    = Adam(model.parameters(), lr=lr, weight_decay=1e-5)
+        self.scheduler    = CosineAnnealingLR(self.optimizer, T_max=cfg.NUM_EPOCHS, eta_min=1e-6)
+        self.best_val_iou   = 0.0
+        self.early_stop_ctr = 0
+        self.logger         = CSVLogger(model_name, log_dir="logs")
+        self.history        = {"train_loss": [], "val_loss": [], "val_iou": [], "val_bf1": []}
+
+    def _train_epoch(self):
+        self.model.train()
+        total_loss = 0.0
+        for batch in tqdm(self.train_loader, desc="  [Train]", leave=False):
+            images = batch["image"].to(self.cfg.DEVICE)
+            masks  = batch["mask"].to(self.cfg.DEVICE)
+            self.optimizer.zero_grad()
+            loss = self.criterion(self.model(images), masks)
+            loss.backward()
+            self.optimizer.step()
+            total_loss += loss.item() * images.size(0)
+        return total_loss / len(self.train_loader.dataset)
+
+    @torch.no_grad()
+    def _val_epoch(self):
+        self.model.eval()
+        total_loss, all_metrics = 0.0, []
+        for batch in tqdm(self.val_loader, desc="  [Val]  ", leave=False):
+            images = batch["image"].to(self.cfg.DEVICE)
+            masks  = batch["mask"].to(self.cfg.DEVICE)
+            logits = self.model(images)
+            total_loss += self.criterion(logits, masks).item() * images.size(0)
+            preds_np = logits.argmax(dim=1).cpu().numpy()
+            masks_np = masks.cpu().numpy()
+            for i in range(len(preds_np)):
+                all_metrics.append(compute_all_metrics(preds_np[i], masks_np[i],
+                                                       boundary_theta=self.cfg.BOUNDARY_THETA))
+        return total_loss / len(self.val_loader.dataset), aggregate_metrics(all_metrics)
+
+    def train(self):
+        print(f"\n{'='*60}\n Training: {self.model_name}\n Device:   {self.cfg.DEVICE}\n Epochs:   {self.cfg.NUM_EPOCHS}\n{'='*60}")
+
+        self.logger.write_info({
+            "model_name":    self.model_name,
+            "parameters":    _count_params(self.model),
+            "device":        self.cfg.DEVICE,
+            "epochs":        self.cfg.NUM_EPOCHS,
+            "early_stop":    self.cfg.EARLY_STOP_PATIENCE,
+            "batch_size":    self.cfg.BATCH_SIZE,
+            "image_size":    f"{self.cfg.IMAGE_HEIGHT}x{self.cfg.IMAGE_WIDTH}",
+            "in_channels":   self.cfg.IN_CHANNELS,
+            "num_classes":   self.cfg.NUM_CLASSES,
+            "train_samples": len(self.train_loader.dataset),
+            "val_samples":   len(self.val_loader.dataset),
+            "optimizer":     "Adam",
+            "scheduler":     "CosineAnnealingLR",
+            "loss":          "Focal + Dice",
+        })
+
+        ckpt_path = os.path.join(self.cfg.CHECKPOINT_DIR, f"{self.model_name}_best.pth")
+
+        for epoch in range(1, self.cfg.NUM_EPOCHS + 1):
+            t0 = time.time()
+            train_loss      = self._train_epoch()
+            val_loss, val_m = self._val_epoch()
+            self.scheduler.step()
+
+            val_iou = val_m.get("mean_iou",         0.0)
+            val_bf1 = val_m.get("mean_boundary_f1", 0.0)
+            lr      = self.optimizer.param_groups[0]["lr"]
+            elapsed = time.time() - t0
+            is_best = val_iou > self.best_val_iou
+
+            self.history["train_loss"].append(train_loss)
+            self.history["val_loss"].append(val_loss)
+            self.history["val_iou"].append(val_iou)
+            self.history["val_bf1"].append(val_bf1)
+
+            self.logger.log_epoch(epoch=epoch, train_loss=train_loss, val_loss=val_loss,
+                                  val_metrics=val_m, lr=lr, elapsed_s=elapsed, is_best=is_best)
+
+            print(f"Ep {epoch:03d}/{self.cfg.NUM_EPOCHS}  "
+                  f"train={train_loss:.4f}  val={val_loss:.4f}  "
+                  f"mIoU={val_iou:.4f}  BF1={val_bf1:.4f}  "
+                  f"lr={lr:.1e}  ({elapsed:.1f}s)" + (" ★" if is_best else ""))
+
+            if epoch % 10 == 0:
+                print(f"         Per-class IoU: ", end="")
+                for name in CLASS_NAMES:
+                    print(f"{name}={val_m.get(f'iou_{name}', float('nan')):.3f}  ", end="")
+                print()
+
+            if is_best:
+                self.best_val_iou   = val_iou
+                self.early_stop_ctr = 0
+                _save_checkpoint({"epoch": epoch, "model_state": self.model.state_dict(),
+                                  "optimizer_state": self.optimizer.state_dict(),
+                                  "val_iou": val_iou, "val_metrics": val_m}, ckpt_path)
+            else:
+                self.early_stop_ctr += 1
+                if self.early_stop_ctr >= self.cfg.EARLY_STOP_PATIENCE:
+                    print(f"\n  Early stopping at epoch {epoch}")
+                    break
+
+        total_time = time.time() - self.logger.start_time
+        h = int(total_time // 3600)
+        m = int((total_time % 3600) // 60)
+        s = int(total_time % 60)
+
+        self.logger.write_summary(self.best_val_iou, total_time)
+        self.logger.close()
+
+        print(f"\nBest val mIoU:   {self.best_val_iou:.4f}")
+        print(f"Ukupno trajanje: {h:02d}h {m:02d}m {s:02d}s")
+        print(f"Log saved:       logs/{self.model_name}_log.csv")
+        return self.history
+
+
+class Pix2PixTrainer:
+
+    def __init__(self, generator, cfg, train_loader, val_loader,
+                 discriminator=None, use_gan=True):
+        self.G          = generator.to(cfg.DEVICE)
+        self.D          = discriminator.to(cfg.DEVICE) if discriminator else None
+        self.cfg        = cfg
+        self.train_loader = train_loader
+        self.val_loader   = val_loader
+        self.use_gan    = use_gan and (discriminator is not None)
+        self.name       = "pix2pix_gan" if self.use_gan else "pix2pix_gen"
+        self.gan_loss   = GANLoss("vanilla") if self.use_gan else None
+        self.g_loss_fn  = Pix2PixGeneratorLoss(num_classes=cfg.NUM_CLASSES,
+                                                lambda_ce=cfg.PIX2PIX_LAMBDA,
+                                                use_gan=self.use_gan)
+        self.opt_G = Adam(self.G.parameters(), lr=cfg.PIX2PIX_LR_G,
+                          betas=(cfg.PIX2PIX_BETA1, 0.999))
+        if self.use_gan:
+            self.opt_D = Adam(self.D.parameters(), lr=cfg.PIX2PIX_LR_D,
+                              betas=(cfg.PIX2PIX_BETA1, 0.999))
+        self.best_val_iou   = 0.0
+        self.early_stop_ctr = 0
+        self.logger         = CSVLogger(self.name, log_dir="logs")
+        self.history        = {"g_loss": [], "d_loss": [], "val_iou": [], "val_bf1": []}
+
+    def _train_epoch(self):
+        self.G.train()
+        if self.D: self.D.train()
+        total_g, total_d, n = 0.0, 0.0, 0
+        for batch in tqdm(self.train_loader, desc="  [Train]", leave=False):
+            images = batch["image"].to(self.cfg.DEVICE)
+            masks  = batch["mask"].to(self.cfg.DEVICE)
+            fake_logits = self.G(images)
+            fake_probs  = torch.softmax(fake_logits, dim=1)
+            real_onehot = torch.nn.functional.one_hot(masks, self.cfg.NUM_CLASSES).permute(0,3,1,2).float()
+            if self.use_gan:
+                self.opt_D.zero_grad()
+                d_loss = (self.gan_loss(self.D(images, real_onehot), is_real=True) +
+                          self.gan_loss(self.D(images, fake_probs.detach()), is_real=False)) * 0.5
+                d_loss.backward()
+                self.opt_D.step()
+                total_d += d_loss.item() * images.size(0)
+            self.opt_G.zero_grad()
+            fake_pred_g = self.D(images, fake_probs) if self.use_gan else None
+            g_loss = self.g_loss_fn(fake_pred_g, fake_logits, masks)
+            g_loss.backward()
+            self.opt_G.step()
+            total_g += g_loss.item() * images.size(0)
+            n += images.size(0)
+        return total_g / n, (total_d / n if self.use_gan else 0.0)
+
+    @torch.no_grad()
+    def _val_epoch(self):
+        self.G.eval()
+        all_metrics = []
+        for batch in self.val_loader:
+            images = batch["image"].to(self.cfg.DEVICE)
+            masks  = batch["mask"].to(self.cfg.DEVICE)
+            logits = self.G(images)
+            preds_np = logits.argmax(dim=1).cpu().numpy()
+            masks_np = masks.cpu().numpy()
+            for i in range(len(preds_np)):
+                all_metrics.append(compute_all_metrics(preds_np[i], masks_np[i],
+                                                       boundary_theta=self.cfg.BOUNDARY_THETA))
+        return aggregate_metrics(all_metrics)
+
+    def train(self):
+        print(f"\n{'='*60}\n Training: {self.name}  (use_gan={self.use_gan})\n{'='*60}")
+        self.logger.write_info({
+            "model_name": self.name, "use_gan": self.use_gan,
+            "device": self.cfg.DEVICE, "epochs": self.cfg.NUM_EPOCHS,
+            "batch_size": self.cfg.BATCH_SIZE,
+            "train_samples": len(self.train_loader.dataset),
+            "val_samples": len(self.val_loader.dataset),
+        })
+        ckpt_path = os.path.join(self.cfg.CHECKPOINT_DIR, f"{self.name}_best.pth")
+
+        for epoch in range(1, self.cfg.NUM_EPOCHS + 1):
+            t0 = time.time()
+            g_loss, d_loss = self._train_epoch()
+            val_m          = self._val_epoch()
+            val_iou = val_m.get("mean_iou", 0.0)
+            val_bf1 = val_m.get("mean_boundary_f1", 0.0)
+            elapsed = time.time() - t0
+            is_best = val_iou > self.best_val_iou
+
+            self.history["g_loss"].append(g_loss)
+            self.history["d_loss"].append(d_loss)
+            self.history["val_iou"].append(val_iou)
+            self.history["val_bf1"].append(val_bf1)
+
+            self.logger.log_epoch(epoch=epoch, train_loss=g_loss, val_loss=d_loss,
+                                  val_metrics=val_m, lr=self.cfg.PIX2PIX_LR_G,
+                                  elapsed_s=elapsed, is_best=is_best)
+
+            print(f"Ep {epoch:03d}/{self.cfg.NUM_EPOCHS}  G={g_loss:.4f}  D={d_loss:.4f}  "
+                  f"mIoU={val_iou:.4f}  BF1={val_bf1:.4f}  ({elapsed:.1f}s)"
+                  + (" ★" if is_best else ""))
+
+            if is_best:
+                self.best_val_iou   = val_iou
+                self.early_stop_ctr = 0
+                _save_checkpoint({"epoch": epoch, "G_state": self.G.state_dict(),
+                                  "val_iou": val_iou, "val_metrics": val_m}, ckpt_path)
+            else:
+                self.early_stop_ctr += 1
+                if self.early_stop_ctr >= self.cfg.EARLY_STOP_PATIENCE:
+                    print(f"\n  Early stopping at epoch {epoch}")
+                    break
+
+        total_time = time.time() - self.logger.start_time
+        h = int(total_time // 3600)
+        m = int((total_time % 3600) // 60)
+        s = int(total_time % 60)
+
+        self.logger.write_summary(self.best_val_iou, total_time)
+        self.logger.close()
+
+        print(f"\nBest val mIoU:   {self.best_val_iou:.4f}")
+        print(f"Ukupno trajanje: {h:02d}h {m:02d}m {s:02d}s")
+        print(f"Log saved:       logs/{self.name}_log.csv")
+        return self.history

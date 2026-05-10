@@ -1,0 +1,37 @@
+Izvještaj o datasetu: Anotacija stabala
+
+Struktura i anotacija:
+
+    Drvoxxxx & tree_1_V_xxxx: Ručna anotacija (Samuel & Valentin).
+
+    tree_nove_od_valeta: Model + ručni ispravci (Valentin).
+
+    tree_najnovije_od_valeta: Model + ručna provjera i revizija (Samuel).
+
+Statistika podataka:
+
+    Broj stabala (mapa): 58
+
+    Ukupno PLY datoteka: 657
+
+    RGB-D setovi: 657 / 657
+
+    Ukupno točaka: 52.304.900
+
+Segmentacija:
+
+    GRANE: 38.615.645 točaka (73,83%)
+
+    DEBLO: 6.894.695 točaka (13,18%)
+
+    POTPORA: 6.775.166 točaka (12,95%)
+
+    OSTALO: 22.842 točaka (0,04%)
+
+Faze rada:
+
+    Krug 1: ~200 rucno anotiranih datoteka.
+
+    Krug 2: ~200 anotiranih od strane Valentina (model + ispravci).
+
+    Krug 3: ~250 provjerenih od strane Samuela (bolji model + ispravci).

@@ -1,0 +1,17 @@
+============================================================
+  TRAINING INFO — pix2pix_gen
+  Started: 2026-04-22 14:24:57
+============================================================
+
+  model_name               : pix2pix_gen
+  generator                : 54.42M trainable / 54.42M total
+  discriminator            : none
+  use_gan                  : False
+  device                   : cuda
+  epochs                   : 100
+  batch_size               : 4
+  lambda                   : 100.0
+  train_samples            : 333
+  val_samples              : 31
+
+============================================================

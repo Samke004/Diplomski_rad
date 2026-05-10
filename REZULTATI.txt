@@ -1,0 +1,64 @@
+================================================================================
+USPOREDBA MODELA - SEGMENTACIJA GRANA STABALA
+================================================================================
+Dataset: 500 train / 80 val / 77 test slika-u svim eksperimentima jednak-bez data leakeagea.
+Klase:   1=Deblo, 2=Grane, 3=Potpora (background i klasa ostalo isključeni iz mIoU)
+================================================================================
+
+── DEPTH (normalni) ─────────────────────────────────────────────────────────
+
+Model                    | mIoU  | mBF1  | IoU Deblo | IoU Grane | IoU Potpora | Branch Recall
+-------------------------|-------|-------|-----------|-----------|-------------|---------------
+UNet-ResNet34            | 68.75 | 81.96 |   76.20   |   89.81   |    40.24    |     93.97
+UNet-EfficientNet-B4     | 69.76 | 84.72 |   76.66   |   90.46   |    42.17    |     94.82
+DeepLabV3-ResNet50       | 69.44 | 86.05 |   78.03   |   88.19   |    42.10    |     93.72
+SegFormer-B1             | 70.21 | 85.61 |   78.56   |   88.62   |    43.44    |     93.67
+MANet-ResNeXt50          | 69.35 | 82.24 |   76.81   |   90.67   |    40.59    |     93.84
+DeepLabV3+-MobileNetV2   | 66.48 | 83.54 |   74.97   |   86.83   |    37.65    |     92.75
+ESANet-ResNet34          | 71.41 | 89.51 |   81.25   |   90.31   |    42.66    |     95.30
+
+── DEPTH (HHA encoding) ─────────────────────────────────────────────────────
+
+Model                    | mIoU  | mBF1  | IoU Deblo | IoU Grane | IoU Potpora | Branch Recall
+-------------------------|-------|-------|-----------|-----------|-------------|---------------
+UNet-ResNet34            | 66.59 | 81.68 |   74.59   |   87.87   |    37.32    |     92.47
+UNet-EfficientNet-B4     | 68.32 | 82.02 |   75.10   |   88.68   |    41.17    |     93.27
+DeepLabV3-ResNet50       | 67.42 | 84.36 |   75.94   |   86.70   |    39.60    |     92.77
+SegFormer-B1             | 67.72 | 84.22 |   76.02   |   86.49   |    40.66    |     92.70
+DeepLabV3+-MobileNetV2   | 64.76 | 81.64 |   73.42   |   84.74   |    36.11    |     91.31
+ESANet-ResNet34          |  0.32 | 16.70 |    0.12   |    0.67   |     0.17    |      0.68 ❌
+
+── RGB-D PRETRAINED (DFormer) ───────────────────────────────────────────────
+
+Model                    | mIoU  | mBF1  | IoU Deblo | IoU Grane | IoU Potpora | mAcc
+-------------------------|-------|-------|-----------|-----------|-------------|-------
+DFormer-Small            | 86.77 | 94.44 |   80.27   |   87.75   |    92.29    | 98.14
+DFormer-Base             | 87.14 | 94.62 |   81.03   |   88.09   |    92.29    | 98.20
+DFormer-Large            | 87.07 | 94.58 |   80.76   |   87.98   |    92.46    | 98.18
+DFormerv2-Small          | 84.30 | 93.35 |   77.24   |   86.01   |    89.62    | 97.88
+DFormerv2-Base           | 84.84 | 93.60 |   77.78   |   86.63   |    90.11    | 97.97
+
+================================================================================
+KOMENTAR
+================================================================================
+- DFormer modeli dramatično nadmašuju sve ostale pristupe (+15-18% mIoU)
+- HHA encoding pogoršava rezultate za sve modele (~1-2% mIoU)- imam pretpostavke i neke dokaze zasto.
+- ESANet s HHA potpuno pada (0.32%) — nekompatibilnost s HHA formatom
+- Klasa Potpora (~37-42%) najteža za CNN modele, ali DFormer je riješio taj problem s RGB-D pretraining pristupom (~89-92%)
+- DFormer-Base je ukupno najbolji model (87.14% mIoU)
+- Originalni DFormer (ICLR 2024) bolji od DFormerv2 (CVPR 2025) na
+  ovom datasetu — vjerojatno zbog manjeg broja podataka za treniranje
+- Na gitu se ne nalaze checkpoints jer zauzimaju previse memorije, ali imam ih spremljene i lokalno i na megi.
+- Na gitu se ne nalaze neki logovi i svi modeli jer zauzimaju previse memorije, ali takoder ih imam sve spremljene.
+================================================================================
+
+================================================================================
+PLAN ZA DALJE:
+Isplanirati kako ce diplomski uopce izgledati(kostur(podnaslovi itd.))
+Poceti pisati diplomski i napisati do 5.6.2026. prvu cijelovitu verziju.
+Opet pokušati pravi ESANet(rgbd pretrained) implementirati nad ovim datasetom(pokusao sam ali bilo je neuspjesno).
+DFormerv2 Large fali(trebam se dogovoriti za komp u K07 sa 4080) da bi usporedba bila potpuna.
+Pokušati malo eksperimentirati sa DFormerBase hiperparametrima da mozda dodem do jos boljih rezultata.
+Evaluirati sto je prof Nyarko trazio-vrijeme i racunalni resursi(inference time i memoriju) po jednom ulazu(slici) za svaki model.(imam samo za neke), a trening vrijeme i resursi za train imam za sve.
+
+================================================================================

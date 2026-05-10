@@ -1,0 +1,22 @@
+============================================================
+  TRAINING INFO — manet_resnext50
+  Started: 2026-04-22 12:56:09
+============================================================
+
+  model_name               : manet_resnext50
+  parameters               : 146.92M trainable / 146.92M total
+  device                   : cuda
+  epochs                   : 100
+  early_stop               : 15
+  batch_size               : 4
+  image_size               : 512x512
+  in_channels              : 4
+  num_classes              : 4
+  class_names              : ['background', 'trunk', 'branches', 'support']
+  train_samples            : 333
+  val_samples              : 31
+  optimizer                : Adam
+  scheduler                : CosineAnnealingLR
+  loss                     : CrossEntropy + Dice
+
+============================================================

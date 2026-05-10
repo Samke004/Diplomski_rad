@@ -1,0 +1,28 @@
+============================================================
+  TRAINING INFO — manet_resnext50
+  Started: 2026-05-07 13:48:57
+============================================================
+
+  model_name               : manet_resnext50
+  parameters               : 146.92M trainable / 146.92M total
+  device                   : cuda
+  epochs                   : 100
+  early_stop               : 15
+  batch_size               : 2
+  image_size               : 640x640
+  in_channels              : 4
+  num_classes              : 4
+  train_samples            : 501
+  val_samples              : 80
+  optimizer                : Adam
+  scheduler                : CosineAnnealingLR
+  loss                     : Focal + Dice
+
+============================================================
+
+  REZULTATI
+============================================================
+  Best val mIoU:    0.6095
+  Ukupno trajanje:  01h 25m 14s
+  Završeno:         2026-05-07 15:14:11
+============================================================

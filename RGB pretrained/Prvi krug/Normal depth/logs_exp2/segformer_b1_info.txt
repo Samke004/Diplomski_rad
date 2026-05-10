@@ -1,0 +1,22 @@
+============================================================
+  TRAINING INFO — segformer_b1
+  Started: 2026-04-22 17:28:35
+============================================================
+
+  model_name               : segformer_b1
+  parameters               : 13.68M trainable / 13.68M total
+  device                   : cuda
+  epochs                   : 100
+  early_stop               : 15
+  batch_size               : 4
+  image_size               : 640x640
+  in_channels              : 4
+  num_classes              : 4
+  class_names              : ['background', 'trunk', 'branches', 'support']
+  train_samples            : 333
+  val_samples              : 31
+  optimizer                : Adam
+  scheduler                : CosineAnnealingLR
+  loss                     : CrossEntropy + Dice
+
+============================================================

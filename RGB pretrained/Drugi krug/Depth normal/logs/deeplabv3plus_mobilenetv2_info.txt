@@ -1,0 +1,28 @@
+============================================================
+  TRAINING INFO — deeplabv3plus_mobilenetv2
+  Started: 2026-05-07 11:43:08
+============================================================
+
+  model_name               : deeplabv3plus_mobilenetv2
+  parameters               : 4.38M trainable / 4.38M total
+  device                   : cuda
+  epochs                   : 100
+  early_stop               : 15
+  batch_size               : 4
+  image_size               : 640x640
+  in_channels              : 4
+  num_classes              : 4
+  train_samples            : 501
+  val_samples              : 80
+  optimizer                : Adam
+  scheduler                : CosineAnnealingLR
+  loss                     : Focal + Dice
+
+============================================================
+
+  REZULTATI
+============================================================
+  Best val mIoU:    0.5877
+  Ukupno trajanje:  00h 43m 11s
+  Završeno:         2026-05-07 12:26:19
+============================================================

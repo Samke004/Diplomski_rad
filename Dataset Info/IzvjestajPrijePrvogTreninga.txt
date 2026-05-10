@@ -1,0 +1,544 @@
+===============================================================================================
+  MASTER IZVJEŠTAJ DATASETA | 22.04.2026 10:57
+  
+  PRIJE PRVOG TRENINGA
+===============================================================================================
+
+███████████████████████████████████████████████████████████████████████████████████████████████
+  MOJ DATASET — Samuel
+███████████████████████████████████████████████████████████████████████████████████████████████
+
+  ┌─ Drvo0000 (7 fajlova)
+  │  ✅ 0000-0.ply                     | 56,105 pts | ✅ RGB-D
+  │  ✅ 0000-1.ply                     | 83,859 pts | ✅ RGB-D
+  │  ✅ 0000-2.ply                     | 67,115 pts | ✅ RGB-D
+  │  ✅ 0000-3.ply                     | 40,741 pts | ✅ RGB-D
+  │  ✅ 0000-4.ply                     | 56,987 pts | ✅ RGB-D
+  │  ✅ 0000-5.ply                     | 52,221 pts | ✅ RGB-D
+  │  ✅ 0000-6.ply                     | 53,780 pts | ✅ RGB-D
+  └─ Točaka: 410,808
+
+  ┌─ Drvo0001 (7 fajlova)
+  │  ✅ 0001-0.ply                     | 27,943 pts | ✅ RGB-D
+  │  ✅ 0001-1.ply                     | 46,576 pts | ✅ RGB-D
+  │  ✅ 0001-2.ply                     | 37,439 pts | ✅ RGB-D
+  │  ✅ 0001-3.ply                     | 30,382 pts | ✅ RGB-D
+  │  ✅ 0001-4.ply                     | 47,506 pts | ✅ RGB-D
+  │  ✅ 0001-5.ply                     | 48,449 pts | ✅ RGB-D
+  │  ✅ 0001-6.ply                     | 45,325 pts | ✅ RGB-D
+  └─ Točaka: 283,620
+
+  ┌─ Drvo0002 (7 fajlova)
+  │  ✅ 0002-0.ply                     | 35,884 pts | ✅ RGB-D
+  │  ✅ 0002-1.ply                     | 91,515 pts | ✅ RGB-D
+  │  ✅ 0002-2.ply                     | 92,901 pts | ✅ RGB-D
+  │  ✅ 0002-3.ply                     | 40,144 pts | ✅ RGB-D
+  │  ✅ 0002-4.ply                     | 47,223 pts | ✅ RGB-D
+  │  ✅ 0002-5.ply                     | 54,997 pts | ✅ RGB-D
+  │  ✅ 0002-6.ply                     | 61,133 pts | ✅ RGB-D
+  └─ Točaka: 423,797
+
+  ┌─ Drvo0003 (7 fajlova)
+  │  ✅ 0003-0.ply                     | 41,233 pts | ✅ RGB-D
+  │  ✅ 0003-1.ply                     | 37,548 pts | ✅ RGB-D
+  │  ✅ 0003-2.ply                     | 46,106 pts | ✅ RGB-D
+  │  ✅ 0003-3.ply                     | 29,965 pts | ✅ RGB-D
+  │  ✅ 0003-4.ply                     | 35,005 pts | ✅ RGB-D
+  │  ✅ 0003-5.ply                     | 53,847 pts | ✅ RGB-D
+  │  ✅ 0003-6.ply                     | 50,968 pts | ✅ RGB-D
+  └─ Točaka: 294,672
+
+  ┌─ Drvo0004 (7 fajlova)
+  │  ✅ 0004-0.ply                     | 75,620 pts | ✅ RGB-D
+  │  ✅ 0004-1.ply                     | 98,849 pts | ✅ RGB-D
+  │  ✅ 0004-2.ply                     | 31,403 pts | ✅ RGB-D
+  │  ✅ 0004-3.ply                     | 49,337 pts | ✅ RGB-D
+  │  ✅ 0004-4.ply                     | 40,009 pts | ✅ RGB-D
+  │  ✅ 0004-5.ply                     | 78,490 pts | ✅ RGB-D
+  │  ✅ 0004-6.ply                     | 29,488 pts | ✅ RGB-D
+  └─ Točaka: 403,196
+
+  ┌─ Drvo0005 (6 fajlova)
+  │  ✅ 0005-0.ply                     | 71,103 pts | ✅ RGB-D
+  │  ✅ 0005-1.ply                     | 79,322 pts | ✅ RGB-D
+  │  ✅ 0005-2.ply                     | 84,301 pts | ✅ RGB-D
+  │  ✅ 0005-3.ply                     | 50,209 pts | ✅ RGB-D
+  │  ✅ 0005-4.ply                     | 59,609 pts | ✅ RGB-D
+  │  ✅ 0005-5.ply                     | 78,765 pts | ✅ RGB-D
+  └─ Točaka: 423,309
+
+  ┌─ Drvo0006 (7 fajlova)
+  │  ✅ 0006-0.ply                     | 117,725 pts | ✅ RGB-D
+  │  ✅ 0006-1.ply                     | 103,817 pts | ✅ RGB-D
+  │  ✅ 0006-2.ply                     | 122,337 pts | ✅ RGB-D
+  │  ✅ 0006-3.ply                     | 58,179 pts | ✅ RGB-D
+  │  ✅ 0006-4.ply                     | 61,857 pts | ✅ RGB-D
+  │  ✅ 0006-5.ply                     | 117,313 pts | ✅ RGB-D
+  │  ✅ 0006-6.ply                     | 59,557 pts | ✅ RGB-D
+  └─ Točaka: 640,785
+
+  ┌─ Drvo0007 (6 fajlova)
+  │  ✅ 0007-0.ply                     | 37,800 pts | ✅ RGB-D
+  │  ✅ 0007-1.ply                     | 76,070 pts | ✅ RGB-D
+  │  ✅ 0007-2.ply                     | 42,661 pts | ✅ RGB-D
+  │  ✅ 0007-3.ply                     | 97,539 pts | ✅ RGB-D
+  │  ✅ 0007-4.ply                     | 58,824 pts | ✅ RGB-D
+  │  ✅ 0007-5.ply                     | 41,126 pts | ✅ RGB-D
+  └─ Točaka: 354,020
+
+  ┌─ Drvo0008 (6 fajlova)
+  │  ✅ 0008-0.ply                     | 37,442 pts | ✅ RGB-D
+  │  ✅ 0008-1.ply                     | 48,043 pts | ✅ RGB-D
+  │  ✅ 0008-2.ply                     | 24,519 pts | ✅ RGB-D
+  │  ✅ 0008-3.ply                     | 37,394 pts | ✅ RGB-D
+  │  ✅ 0008-4.ply                     | 51,965 pts | ✅ RGB-D
+  │  ✅ 0008-5.ply                     | 51,149 pts | ✅ RGB-D
+  └─ Točaka: 250,512
+
+  ┌─ Drvo0009 (6 fajlova)
+  │  ✅ 0009-0.ply                     | 48,850 pts | ✅ RGB-D
+  │  ✅ 0009-1.ply                     | 27,560 pts | ✅ RGB-D
+  │  ✅ 0009-2.ply                     | 34,667 pts | ✅ RGB-D
+  │  ✅ 0009-3.ply                     | 134,023 pts | ✅ RGB-D
+  │  ✅ 0009-4.ply                     | 47,878 pts | ✅ RGB-D
+  │  ✅ 0009-5.ply                     | 51,332 pts | ✅ RGB-D
+  └─ Točaka: 344,310
+
+  ┌─ Drvo0010 (6 fajlova)
+  │  ✅ 0010-0.ply                     | 36,318 pts | ✅ RGB-D
+  │  ✅ 0010-1.ply                     | 26,898 pts | ✅ RGB-D
+  │  ✅ 0010-2.ply                     | 47,613 pts | ✅ RGB-D
+  │  ✅ 0010-3.ply                     | 58,893 pts | ✅ RGB-D
+  │  ✅ 0010-4.ply                     | 47,845 pts | ✅ RGB-D
+  │  ✅ 0010-5.ply                     | 23,205 pts | ✅ RGB-D
+  └─ Točaka: 240,772
+
+  ┌─ Drvo0011 (7 fajlova)
+  │  ✅ 0011-0.ply                     | 40,413 pts | ✅ RGB-D
+  │  ✅ 0011-1.ply                     | 57,897 pts | ✅ RGB-D
+  │  ✅ 0011-2.ply                     | 39,299 pts | ✅ RGB-D
+  │  ✅ 0011-3.ply                     | 34,972 pts | ✅ RGB-D
+  │  ✅ 0011-4.ply                     | 68,058 pts | ✅ RGB-D
+  │  ✅ 0011-5.ply                     | 46,945 pts | ✅ RGB-D
+  │  ✅ 0011-6.ply                     | 52,518 pts | ✅ RGB-D
+  └─ Točaka: 340,102
+
+  ┌─ Drvo0012 (6 fajlova)
+  │  ✅ 0012-0.ply                     | 28,346 pts | ✅ RGB-D
+  │  ✅ 0012-1.ply                     | 59,779 pts | ✅ RGB-D
+  │  ✅ 0012-2.ply                     | 41,899 pts | ✅ RGB-D
+  │  ✅ 0012-3.ply                     | 37,483 pts | ✅ RGB-D
+  │  ✅ 0012-4.ply                     | 48,463 pts | ✅ RGB-D
+  │  ✅ 0012-5.ply                     | 46,447 pts | ✅ RGB-D
+  └─ Točaka: 262,417
+
+  ┌─ Drvo0013 (6 fajlova)
+  │  ✅ 0013-0.ply                     | 47,304 pts | ✅ RGB-D
+  │  ✅ 0013-1.ply                     | 48,862 pts | ✅ RGB-D
+  │  ✅ 0013-2.ply                     | 80,783 pts | ✅ RGB-D
+  │  ✅ 0013-3.ply                     | 51,899 pts | ✅ RGB-D
+  │  ✅ 0013-4.ply                     | 49,955 pts | ✅ RGB-D
+  │  ✅ 0013-5.ply                     | 55,821 pts | ✅ RGB-D
+  └─ Točaka: 334,624
+
+  ┌─ Drvo0014 (7 fajlova)
+  │  ✅ 0014-0.ply                     | 48,887 pts | ✅ RGB-D
+  │  ✅ 0014-1.ply                     | 53,686 pts | ✅ RGB-D
+  │  ✅ 0014-2.ply                     | 37,276 pts | ✅ RGB-D
+  │  ✅ 0014-3.ply                     | 38,975 pts | ✅ RGB-D
+  │  ✅ 0014-4.ply                     | 68,587 pts | ✅ RGB-D
+  │  ✅ 0014-5.ply                     | 60,371 pts | ✅ RGB-D
+  │  ✅ 0014-6.ply                     | 32,532 pts | ✅ RGB-D
+  └─ Točaka: 340,314
+
+  ┌─ Drvo0015 (7 fajlova)
+  │  ✅ 0015-0.ply                     | 56,500 pts | ✅ RGB-D
+  │  ✅ 0015-1.ply                     | 66,710 pts | ✅ RGB-D
+  │  ✅ 0015-2.ply                     | 57,895 pts | ✅ RGB-D
+  │  ✅ 0015-3.ply                     | 82,270 pts | ✅ RGB-D
+  │  ✅ 0015-4.ply                     | 64,360 pts | ✅ RGB-D
+  │  ✅ 0015-5.ply                     | 77,013 pts | ✅ RGB-D
+  │  ✅ 0015-6.ply                     | 73,495 pts | ✅ RGB-D
+  └─ Točaka: 478,243
+
+███████████████████████████████████████████████████████████████████████████████████████████████
+  KOLEGOV DATASET — Valentin
+███████████████████████████████████████████████████████████████████████████████████████████████
+
+  ┌─ tree_1_V_0179 (21 fajlova)
+  │  ✅ 0.ply                          | 151,971 pts | ✅ RGB-D
+  │  ✅ 1.ply                          | 143,307 pts | ✅ RGB-D
+  │  ✅ 10.ply                         | 78,899 pts | ✅ RGB-D
+  │  ✅ 11.ply                         | 114,099 pts | ✅ RGB-D
+  │  ✅ 12.ply                         | 84,184 pts | ✅ RGB-D
+  │  ✅ 13.ply                         | 87,242 pts | ✅ RGB-D
+  │  ✅ 14.ply                         | 118,418 pts | ✅ RGB-D
+  │  ✅ 15.ply                         | 103,905 pts | ✅ RGB-D
+  │  ✅ 16.ply                         | 48,924 pts | ✅ RGB-D
+  │  ✅ 17.ply                         | 96,543 pts | ✅ RGB-D
+  │  ✅ 18.ply                         | 80,122 pts | ✅ RGB-D
+  │  ✅ 19.ply                         | 101,352 pts | ✅ RGB-D
+  │  ✅ 2.ply                          | 83,503 pts | ✅ RGB-D
+  │  ✅ 20.ply                         | 80,152 pts | ✅ RGB-D
+  │  ✅ 3.ply                          | 107,107 pts | ✅ RGB-D
+  │  ✅ 4.ply                          | 56,479 pts | ✅ RGB-D
+  │  ✅ 5.ply                          | 66,386 pts | ✅ RGB-D
+  │  ✅ 6.ply                          | 68,510 pts | ✅ RGB-D
+  │  ✅ 7.ply                          | 92,786 pts | ✅ RGB-D
+  │  ✅ 8.ply                          | 84,398 pts | ✅ RGB-D
+  │  ✅ 9.ply                          | 106,896 pts | ✅ RGB-D
+  └─ Točaka: 1,955,183
+
+  ┌─ tree_1_V_0180 (16 fajlova)
+  │  ✅ 0.ply                          | 124,270 pts | ✅ RGB-D
+  │  ✅ 1.ply                          | 86,729 pts | ✅ RGB-D
+  │  ✅ 10.ply                         | 101,812 pts | ✅ RGB-D
+  │  ✅ 11.ply                         | 77,259 pts | ✅ RGB-D
+  │  ✅ 12.ply                         | 74,520 pts | ✅ RGB-D
+  │  ✅ 13.ply                         | 48,929 pts | ✅ RGB-D
+  │  ✅ 14.ply                         | 72,074 pts | ✅ RGB-D
+  │  ✅ 15.ply                         | 52,124 pts | ✅ RGB-D
+  │  ✅ 2.ply                          | 56,418 pts | ✅ RGB-D
+  │  ✅ 3.ply                          | 77,531 pts | ✅ RGB-D
+  │  ✅ 4.ply                          | 84,758 pts | ✅ RGB-D
+  │  ✅ 5.ply                          | 63,620 pts | ✅ RGB-D
+  │  ✅ 6.ply                          | 48,668 pts | ✅ RGB-D
+  │  ✅ 7.ply                          | 98,707 pts | ✅ RGB-D
+  │  ✅ 8.ply                          | 92,152 pts | ✅ RGB-D
+  │  ✅ 9.ply                          | 76,959 pts | ✅ RGB-D
+  └─ Točaka: 1,236,530
+
+  ┌─ tree_1_V_0181 (19 fajlova)
+  │  ✅ 0.ply                          | 81,045 pts | ✅ RGB-D
+  │  ✅ 1.ply                          | 106,406 pts | ✅ RGB-D
+  │  ✅ 10.ply                         | 73,875 pts | ✅ RGB-D
+  │  ✅ 11.ply                         | 70,551 pts | ✅ RGB-D
+  │  ✅ 12.ply                         | 72,569 pts | ✅ RGB-D
+  │  ✅ 13.ply                         | 73,231 pts | ✅ RGB-D
+  │  ✅ 14.ply                         | 68,624 pts | ✅ RGB-D
+  │  ✅ 15.ply                         | 99,065 pts | ✅ RGB-D
+  │  ✅ 16.ply                         | 75,523 pts | ✅ RGB-D
+  │  ✅ 17.ply                         | 57,178 pts | ✅ RGB-D
+  │  ✅ 18.ply                         | 68,550 pts | ✅ RGB-D
+  │  ✅ 2.ply                          | 96,462 pts | ✅ RGB-D
+  │  ✅ 3.ply                          | 64,178 pts | ✅ RGB-D
+  │  ✅ 4.ply                          | 90,819 pts | ✅ RGB-D
+  │  ✅ 5.ply                          | 56,600 pts | ✅ RGB-D
+  │  ✅ 6.ply                          | 63,197 pts | ✅ RGB-D
+  │  ✅ 7.ply                          | 101,926 pts | ✅ RGB-D
+  │  ✅ 8.ply                          | 97,081 pts | ✅ RGB-D
+  │  ✅ 9.ply                          | 89,640 pts | ✅ RGB-D
+  └─ Točaka: 1,506,520
+
+  ┌─ tree_1_V_0182 (18 fajlova)
+  │  ✅ 0.ply                          | 74,215 pts | ✅ RGB-D
+  │  ✅ 1.ply                          | 155,153 pts | ✅ RGB-D
+  │  ✅ 10.ply                         | 51,730 pts | ✅ RGB-D
+  │  ✅ 11.ply                         | 77,501 pts | ✅ RGB-D
+  │  ✅ 12.ply                         | 59,755 pts | ✅ RGB-D
+  │  ✅ 13.ply                         | 74,419 pts | ✅ RGB-D
+  │  ✅ 14.ply                         | 72,205 pts | ✅ RGB-D
+  │  ✅ 15.ply                         | 72,901 pts | ✅ RGB-D
+  │  ✅ 16.ply                         | 84,301 pts | ✅ RGB-D
+  │  ✅ 17.ply                         | 59,302 pts | ✅ RGB-D
+  │  ✅ 2.ply                          | 83,648 pts | ✅ RGB-D
+  │  ✅ 3.ply                          | 81,753 pts | ✅ RGB-D
+  │  ✅ 4.ply                          | 94,756 pts | ✅ RGB-D
+  │  ✅ 5.ply                          | 111,869 pts | ✅ RGB-D
+  │  ✅ 6.ply                          | 75,912 pts | ✅ RGB-D
+  │  ✅ 7.ply                          | 81,315 pts | ✅ RGB-D
+  │  ✅ 8.ply                          | 89,948 pts | ✅ RGB-D
+  │  ✅ 9.ply                          | 68,600 pts | ✅ RGB-D
+  └─ Točaka: 1,469,283
+
+  ┌─ tree_1_V_0183 (17 fajlova)
+  │  ✅ 0.ply                          | 48,954 pts | ✅ RGB-D
+  │  ✅ 1.ply                          | 52,769 pts | ✅ RGB-D
+  │  ✅ 10.ply                         | 80,913 pts | ✅ RGB-D
+  │  ✅ 11.ply                         | 87,762 pts | ✅ RGB-D
+  │  ✅ 12.ply                         | 73,815 pts | ✅ RGB-D
+  │  ✅ 13.ply                         | 65,814 pts | ✅ RGB-D
+  │  ✅ 14.ply                         | 63,312 pts | ✅ RGB-D
+  │  ✅ 15.ply                         | 85,955 pts | ✅ RGB-D
+  │  ✅ 16.ply                         | 73,052 pts | ✅ RGB-D
+  │  ✅ 2.ply                          | 48,747 pts | ✅ RGB-D
+  │  ✅ 3.ply                          | 39,095 pts | ✅ RGB-D
+  │  ✅ 4.ply                          | 38,519 pts | ✅ RGB-D
+  │  ✅ 5.ply                          | 53,776 pts | ✅ RGB-D
+  │  ✅ 6.ply                          | 78,459 pts | ✅ RGB-D
+  │  ✅ 7.ply                          | 63,665 pts | ✅ RGB-D
+  │  ✅ 8.ply                          | 63,784 pts | ✅ RGB-D
+  │  ✅ 9.ply                          | 97,002 pts | ✅ RGB-D
+  └─ Točaka: 1,115,393
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0176 (20 fajlova)
+  │  ✅ tree_1_V_0176_0_pred.ply       | 96,888 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_10_pred.ply      | 79,535 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_12_pred.ply      | 177,656 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_13_pred.ply      | 116,143 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_14_pred.ply      | 160,564 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_15_pred.ply      | 101,358 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_16_pred.ply      | 85,509 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_17_pred.ply      | 129,452 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_18_pred.ply      | 128,826 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_19_pred.ply      | 96,832 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_1_pred.ply       | 101,761 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_20_pred.ply      | 68,972 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_2_pred.ply       | 89,895 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_3_pred.ply       | 72,915 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_4_pred.ply       | 101,708 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_5_pred.ply       | 66,787 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_6_pred.ply       | 114,718 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_7_pred.ply       | 164,298 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_8_pred.ply       | 114,352 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0176_9_pred.ply       | 104,859 pts | ✅ RGB-D
+  └─ Točaka: 2,173,028
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0171 (14 fajlova)
+  │  ✅ tree_1_V_0171_0_pred.ply       | 67,773 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_10_pred.ply      | 68,855 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_11_pred.ply      | 58,907 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_12_pred.ply      | 106,133 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_13_pred.ply      | 83,881 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_1_pred.ply       | 81,072 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_2_pred.ply       | 99,329 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_3_pred.ply       | 59,265 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_4_pred.ply       | 48,285 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_5_pred.ply       | 52,980 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_6_pred.ply       | 67,885 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_7_pred.ply       | 95,000 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_8_pred.ply       | 74,637 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0171_9_pred.ply       | 70,624 pts | ✅ RGB-D
+  └─ Točaka: 1,034,626
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0168 (13 fajlova)
+  │  ✅ tree_1_V_0168_0_pred.ply       | 57,388 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_10_pred.ply      | 50,329 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_11_pred.ply      | 70,341 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_12_pred.ply      | 65,761 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_1_pred.ply       | 96,005 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_2_pred.ply       | 109,424 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_3_pred.ply       | 72,113 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_4_pred.ply       | 54,871 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_5_pred.ply       | 79,008 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_6_pred.ply       | 84,931 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_7_pred.ply       | 80,387 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_8_pred.ply       | 76,673 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0168_9_pred.ply       | 64,991 pts | ✅ RGB-D
+  └─ Točaka: 962,222
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0167 (10 fajlova)
+  │  ✅ tree_1_V_0167_0_pred.ply       | 37,264 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_1_pred.ply       | 70,283 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_2_pred.ply       | 57,508 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_3_pred.ply       | 53,876 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_4_pred.ply       | 48,244 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_5_pred.ply       | 70,919 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_6_pred.ply       | 76,640 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_7_pred.ply       | 65,751 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_8_pred.ply       | 92,284 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0167_9_pred.ply       | 57,787 pts | ✅ RGB-D
+  └─ Točaka: 630,556
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0169 (12 fajlova)
+  │  ✅ tree_1_V_0169_0_pred.ply       | 64,116 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_10_pred.ply      | 103,135 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_11_pred.ply      | 75,330 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_1_pred.ply       | 70,776 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_2_pred.ply       | 82,931 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_3_pred.ply       | 66,187 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_4_pred.ply       | 40,272 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_5_pred.ply       | 48,445 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_6_pred.ply       | 44,569 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_7_pred.ply       | 72,738 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_8_pred.ply       | 79,507 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0169_9_pred.ply       | 61,150 pts | ✅ RGB-D
+  └─ Točaka: 809,156
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0177 (20 fajlova)
+  │  ✅ tree_1_V_0177_0_pred.ply       | 87,210 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_10_pred.ply      | 137,675 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_11_pred.ply      | 92,861 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_12_pred.ply      | 86,548 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_13_pred.ply      | 102,997 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_14_pred.ply      | 90,768 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_15_pred.ply      | 87,599 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_16_pred.ply      | 120,988 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_17_pred.ply      | 100,132 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_18_pred.ply      | 119,585 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_19_pred.ply      | 111,139 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_1_pred.ply       | 96,987 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_20_pred.ply      | 75,103 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_2_pred.ply       | 95,839 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_4_pred.ply       | 88,326 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_5_pred.ply       | 36,342 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_6_pred.ply       | 81,955 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_7_pred.ply       | 99,993 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_8_pred.ply       | 117,870 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0177_9_pred.ply       | 142,508 pts | ✅ RGB-D
+  └─ Točaka: 1,972,425
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0165 (18 fajlova)
+  │  ✅ tree_1_V_0165_0_pred.ply       | 91,210 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_10_pred.ply      | 64,518 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_11_pred.ply      | 87,348 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_12_pred.ply      | 102,280 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_13_pred.ply      | 70,974 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_14_pred.ply      | 140,880 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_15_pred.ply      | 96,923 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_16_pred.ply      | 76,276 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_17_pred.ply      | 78,715 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_1_pred.ply       | 115,672 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_2_pred.ply       | 76,796 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_3_pred.ply       | 106,423 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_4_pred.ply       | 76,056 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_5_pred.ply       | 101,363 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_6_pred.ply       | 83,423 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_7_pred.ply       | 94,763 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_8_pred.ply       | 136,766 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0165_9_pred.ply       | 92,813 pts | ✅ RGB-D
+  └─ Točaka: 1,693,199
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0170 (8 fajlova)
+  │  ✅ tree_1_V_0170_10_pred.ply      | 62,085 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0170_11_pred.ply      | 94,244 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0170_12_pred.ply      | 68,556 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0170_13_pred.ply      | 83,382 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0170_6_pred.ply       | 60,111 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0170_7_pred.ply       | 60,961 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0170_8_pred.ply       | 82,126 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0170_9_pred.ply       | 66,431 pts | ✅ RGB-D
+  └─ Točaka: 577,896
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0172 (15 fajlova)
+  │  ✅ tree_1_V_0172_0_pred.ply       | 72,266 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_10_pred.ply      | 72,131 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_11_pred.ply      | 93,661 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_12_pred.ply      | 59,724 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_13_pred.ply      | 106,149 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_14_pred.ply      | 86,450 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_1_pred.ply       | 92,775 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_2_pred.ply       | 71,339 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_3_pred.ply       | 39,483 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_4_pred.ply       | 31,212 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_5_pred.ply       | 67,556 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_6_pred.ply       | 78,171 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_7_pred.ply       | 78,415 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_8_pred.ply       | 82,324 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0172_9_pred.ply       | 117,824 pts | ✅ RGB-D
+  └─ Točaka: 1,149,480
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0174 (16 fajlova)
+  │  ✅ tree_1_V_0174_0_pred.ply       | 58,923 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_10_pred.ply      | 98,085 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_11_pred.ply      | 80,560 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_12_pred.ply      | 83,188 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_13_pred.ply      | 89,647 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_14_pred.ply      | 88,523 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_15_pred.ply      | 76,152 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_1_pred.ply       | 68,070 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_2_pred.ply       | 121,118 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_3_pred.ply       | 125,568 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_4_pred.ply       | 53,150 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_5_pred.ply       | 45,732 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_6_pred.ply       | 77,642 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_7_pred.ply       | 82,513 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_8_pred.ply       | 91,629 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0174_9_pred.ply       | 86,702 pts | ✅ RGB-D
+  └─ Točaka: 1,327,202
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0175 (18 fajlova)
+  │  ✅ tree_1_V_0175_0_pred.ply       | 95,899 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_10_pred.ply      | 73,814 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_11_pred.ply      | 71,999 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_12_pred.ply      | 118,582 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_13_pred.ply      | 85,829 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_14_pred.ply      | 109,024 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_15_pred.ply      | 118,950 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_16_pred.ply      | 125,678 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_17_pred.ply      | 96,192 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_1_pred.ply       | 87,467 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_2_pred.ply       | 83,037 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_3_pred.ply       | 84,483 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_4_pred.ply       | 76,000 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_5_pred.ply       | 103,225 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_6_pred.ply       | 99,403 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_7_pred.ply       | 109,068 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_8_pred.ply       | 141,173 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0175_9_pred.ply       | 137,982 pts | ✅ RGB-D
+  └─ Točaka: 1,817,805
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0178 (20 fajlova)
+  │  ✅ tree_1_V_0178_0_pred.ply       | 141,255 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_10_pred.ply      | 135,711 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_11_pred.ply      | 160,559 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_12_pred.ply      | 97,094 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_13_pred.ply      | 92,315 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_14_pred.ply      | 99,200 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_15_pred.ply      | 95,238 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_16_pred.ply      | 81,903 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_17_pred.ply      | 100,130 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_18_pred.ply      | 87,371 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_19_pred.ply      | 112,822 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_1_pred.ply       | 95,206 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_20_pred.ply      | 82,421 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_2_pred.ply       | 86,616 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_3_pred.ply       | 74,785 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_4_pred.ply       | 128,970 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_5_pred.ply       | 92,558 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_6_pred.ply       | 112,062 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_7_pred.ply       | 101,353 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0178_9_pred.ply       | 100,272 pts | ✅ RGB-D
+  └─ Točaka: 2,077,841
+
+  ┌─ tree_nove_od_valeta/tree_1_V_0173 (16 fajlova)
+  │  ✅ tree_1_V_0173_0_pred.ply       | 57,542 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_10_pred.ply      | 73,479 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_11_pred.ply      | 79,512 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_12_pred.ply      | 72,588 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_13_pred.ply      | 97,421 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_14_pred.ply      | 47,173 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_15_pred.ply      | 77,511 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_1_pred.ply       | 70,387 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_2_pred.ply       | 100,975 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_3_pred.ply       | 30,177 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_4_pred.ply       | 47,428 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_5_pred.ply       | 45,419 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_6_pred.ply       | 114,777 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_7_pred.ply       | 81,618 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_8_pred.ply       | 65,834 pts | ✅ RGB-D
+  │  ✅ tree_1_V_0173_9_pred.ply       | 59,612 pts | ✅ RGB-D
+  └─ Točaka: 1,121,453
+
+███████████████████████████████████████████████████████████████████████████████████████████████
+  ZAKLJUČNI IZVJEŠTAJ ZA CIJELI PROJEKT
+███████████████████████████████████████████████████████████████████████████████████████████████
+  Ukupno detektiranih stabala (foldera): 34
+  Ukupno PLY datoteka:                   396
+  Ispravno generiranih RGB-D setova:     396 / 396
+  Ukupno točaka u cijelom datasetu:      30,455,299
+----------------------------------------
+  * DEBLO   :       4,195,764 točaka |  13.78%
+  * GRANE   :      24,262,189 točaka |  79.66%
+  * POTPORA :       1,978,152 točaka |   6.50%
+  * OSTALO  :          22,642 točaka |   0.07%
+===============================================================================================
+  Izvještaj završen: 10:58:20
+  
+  
+  TRAINING ENTRY:
+  
+  
+  Ukupno anotiranih slika: 399
+├─ Ručno (Samuel):       108 slika, 16 stabala
+├─ Ručno (Valentin):      91 slika,  5 stabala  
+└─ Model + pregled:      200 slika, 13 stabala
+
+Podjela: po stablu (bez data leakage)
+├─ TRAIN: 333 slike (83.5%) — sve grupe
+├─ VAL:    31 slika  (7.8%) — samo ručno anotirano
+└─ TEST:   35 slika  (8.8%) — samo ručno anotirano
+
+Ulaz:  4-kanalna RGBD slika [640×480] (RGB + dubina)
+Izlaz: maska labela [640×480] (0=pozadina, 1=deblo, 2=grane, 3=potpora)
+Seed:  42 (reproducibilno)

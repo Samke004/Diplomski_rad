@@ -1,0 +1,22 @@
+============================================================
+  TRAINING INFO — unet_efficientnet_b4
+  Started: 2026-04-22 11:45:21
+============================================================
+
+  model_name               : unet_efficientnet_b4
+  parameters               : 20.23M trainable / 20.23M total
+  device                   : cuda
+  epochs                   : 100
+  early_stop               : 15
+  batch_size               : 4
+  image_size               : 512x512
+  in_channels              : 4
+  num_classes              : 4
+  class_names              : ['background', 'trunk', 'branches', 'support']
+  train_samples            : 333
+  val_samples              : 31
+  optimizer                : Adam
+  scheduler                : CosineAnnealingLR
+  loss                     : CrossEntropy + Dice
+
+============================================================

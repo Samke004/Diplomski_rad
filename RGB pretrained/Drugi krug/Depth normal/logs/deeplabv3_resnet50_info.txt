@@ -1,0 +1,28 @@
+============================================================
+  TRAINING INFO — deeplabv3_resnet50
+  Started: 2026-05-07 10:43:09
+============================================================
+
+  model_name               : deeplabv3_resnet50
+  parameters               : 26.68M trainable / 26.68M total
+  device                   : cuda
+  epochs                   : 100
+  early_stop               : 15
+  batch_size               : 4
+  image_size               : 640x640
+  in_channels              : 4
+  num_classes              : 4
+  train_samples            : 501
+  val_samples              : 80
+  optimizer                : Adam
+  scheduler                : CosineAnnealingLR
+  loss                     : Focal + Dice
+
+============================================================
+
+  REZULTATI
+============================================================
+  Best val mIoU:    0.6085
+  Ukupno trajanje:  00h 59m 06s
+  Završeno:         2026-05-07 11:42:16
+============================================================

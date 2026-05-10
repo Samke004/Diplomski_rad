@@ -1,0 +1,55 @@
+python3 -c "
+from config import Config as cfg
+cfg.BATCH_SIZE = 2
+
+from dataset import AppleTreeDataset
+from augmentations import get_train_transforms, get_val_transforms
+from torch.utils.data import DataLoader
+from models import build_manet
+from trainer import SegmentationTrainer
+
+train_ds = AppleTreeDataset(cfg.TRAIN_IMG_DIR, cfg.TRAIN_MASK_DIR,
+    transform=get_train_transforms(640, 640), img_size=(640, 640))
+val_ds = AppleTreeDataset(cfg.VAL_IMG_DIR, cfg.VAL_MASK_DIR,
+    transform=get_val_transforms(640, 640), img_size=(640, 640))
+
+train_loader = DataLoader(train_ds, batch_size=2, shuffle=True, drop_last=True,
+    num_workers=cfg.NUM_WORKERS, pin_memory=cfg.PIN_MEMORY)
+val_loader = DataLoader(val_ds, batch_size=2, shuffle=False,
+    num_workers=cfg.NUM_WORKERS, pin_memory=cfg.PIN_MEMORY)
+
+model = build_manet(pretrained=True, in_channels=4, num_classes=4)
+SegmentationTrainer(model=model, model_name='manet_resnext50', cfg=cfg,
+    train_loader=train_loader, val_loader=val_loader, lr=1e-4).train()
+"
+
+Jer je grafa ostala bez memorije ovk je pokrenuto!!!
+
+python3 -c "
+from config import Config as cfg
+cfg.IMAGE_HEIGHT = 512
+cfg.IMAGE_WIDTH  = 512
+
+from dataset import AppleTreeDataset
+from augmentations import get_train_transforms, get_val_transforms
+from torch.utils.data import DataLoader
+from models import Pix2PixGenerator, Pix2PixDiscriminator
+from trainer import Pix2PixTrainer
+
+train_ds = AppleTreeDataset(cfg.TRAIN_IMG_DIR, cfg.TRAIN_MASK_DIR,
+    transform=get_train_transforms(512, 512), img_size=(512, 512))
+val_ds = AppleTreeDataset(cfg.VAL_IMG_DIR, cfg.VAL_MASK_DIR,
+    transform=get_val_transforms(512, 512), img_size=(512, 512))
+
+train_loader = DataLoader(train_ds, batch_size=4, shuffle=True, drop_last=True,
+    num_workers=cfg.NUM_WORKERS, pin_memory=cfg.PIN_MEMORY)
+val_loader = DataLoader(val_ds, batch_size=4, shuffle=False,
+    num_workers=cfg.NUM_WORKERS, pin_memory=cfg.PIN_MEMORY)
+
+G = Pix2PixGenerator(in_channels=4, out_channels=4)
+D = Pix2PixDiscriminator(in_channels=4)
+Pix2PixTrainer(generator=G, discriminator=D, use_gan=True,
+    cfg=cfg, train_loader=train_loader, val_loader=val_loader).train()
+"
+pix2pix je ovk pokrenut jer slike prike drugacije velicine
+

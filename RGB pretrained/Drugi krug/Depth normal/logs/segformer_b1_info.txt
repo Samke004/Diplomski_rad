@@ -1,0 +1,28 @@
+============================================================
+  TRAINING INFO — segformer_b1
+  Started: 2026-05-07 12:27:23
+============================================================
+
+  model_name               : segformer_b1
+  parameters               : 13.68M trainable / 13.68M total
+  device                   : cuda
+  epochs                   : 100
+  early_stop               : 15
+  batch_size               : 4
+  image_size               : 640x640
+  in_channels              : 4
+  num_classes              : 4
+  train_samples            : 501
+  val_samples              : 80
+  optimizer                : Adam
+  scheduler                : CosineAnnealingLR
+  loss                     : Focal + Dice
+
+============================================================
+
+  REZULTATI
+============================================================
+  Best val mIoU:    0.6077
+  Ukupno trajanje:  01h 01m 06s
+  Završeno:         2026-05-07 13:28:29
+============================================================

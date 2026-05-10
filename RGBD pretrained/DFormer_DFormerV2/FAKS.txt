@@ -1,0 +1,15 @@
+conda create -n dformer python=3.10 -y
+conda activate dformer
+pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
+pip install mmcv==2.1.0 -f https://download.openmmlab.com/mmcv/dist/cu118/torch2.1/index.html
+pip install -r dformer_requirements_clean.txt
+pip install "numpy<2"
+
+bash train_all.sh
+
+Pretrained 
+
+
+https://drive.google.com/drive/folders/1YuW7qUtnguUFkhC-sfqGySrerjK0rZJX
+
+
