@@ -1,26 +1,90 @@
 #!/bin/bash
 GPUS=1
 export CUDA_VISIBLE_DEVICES="0"
+BASE="/home/samuel/Downloads/DFormerv1/DFormer"
+CKPT_DIR="$BASE/checkpoints"
+OUT_CSV="$BASE/results.csv"
+PORT=29200
 
-echo "=== Evaluacija DFormer-Small ==="
-PYTHONPATH="$(dirname $0)/..":"$(dirname $0)":$PYTHONPATH \
-torchrun --nproc_per_node=$GPUS --master_port=29158 utils/eval.py \
---config=local_configs.BranchDataset.DFormer_Small \
---gpus=$GPUS --no-sliding --no-compile --no-amp \
---continue_fpath="checkpoints/BranchDataset_DFormer-Small_20260507-164410/epoch-184_miou_87.87.pth"
+cd "$BASE" || exit 1
+export PYTHONPATH="$BASE:$BASE/..:$PYTHONPATH"
 
-echo "=== Evaluacija DFormer-Base ==="
-PYTHONPATH="$(dirname $0)/..":"$(dirname $0)":$PYTHONPATH \
-torchrun --nproc_per_node=$GPUS --master_port=29159 utils/eval.py \
---config=local_configs.BranchDataset.DFormer_Base \
---gpus=$GPUS --no-sliding --no-compile --no-amp \
---continue_fpath="checkpoints/BranchDataset_DFormer-Base_20260507-181200/epoch-165_miou_88.24.pth"
+echo "model,overall_accuracy,pixel_accuracy,pixel_accuracy_fg,frequency_weighted_iou,frequency_weighted_iou_fg,mean_iou,mean_boundary_f1,branch_recall,iou_background,iou_trunk,iou_branches,iou_support,recall_background,recall_trunk,recall_branches,recall_support,boundary_f1_background,boundary_f1_trunk,boundary_f1_branches,boundary_f1_support" > "$OUT_CSV"
 
-echo "=== Evaluacija DFormer-Large ==="
-PYTHONPATH="$(dirname $0)/..":"$(dirname $0)":$PYTHONPATH \
-torchrun --nproc_per_node=$GPUS --master_port=29160 utils/eval.py \
---config=local_configs.BranchDataset.DFormer_Large \
---gpus=$GPUS --no-sliding --no-compile --no-amp \
---continue_fpath="checkpoints/BranchDataset_DFormer-Large_20260507-203128/epoch-65_miou_87.81.pth"
+for dir in "$CKPT_DIR"/BranchDataset_*; do
+    name=$(basename "$dir")
 
-echo "=== SVE EVALUACIJE GOTOVE ==="
+    # nadji checkpoint s najvecim miou u nazivu
+    ckpt=$(ls "$dir"/epoch-*_miou_*.pth 2>/dev/null | \
+        awk -F'miou_' '{print $2, $0}' | sed 's/\.pth$//' | \
+        sort -k1 -n -r | head -n1 | awk '{print $2".pth"}')
+
+    if [ -z "$ckpt" ]; then
+        echo "Nema checkpointa u $name, skip"
+        continue
+    fi
+
+    # relativni put od BASE (eval.py konstruira putanje relativno na cwd)
+    ckpt_rel="${ckpt#$BASE/}"
+
+    if [[ "$name" == *"DFormerv2_S"* ]]; then
+        cfg="local_configs.BranchDataset.DFormerv2_S"; model_name="DFormerv2_S"
+    elif [[ "$name" == *"DFormerv2_B"* ]]; then
+        cfg="local_configs.BranchDataset.DFormerv2_B"; model_name="DFormerv2_B"
+    elif [[ "$name" == *"DFormerv2_L"* ]]; then
+        cfg="local_configs.BranchDataset.DFormerv2_L"; model_name="DFormerv2_L"
+    elif [[ "$name" == *"DFormer-Small"* ]]; then
+        cfg="local_configs.BranchDataset.DFormer_Small"; model_name="DFormer_Small"
+    elif [[ "$name" == *"DFormer-Base"* ]]; then
+        cfg="local_configs.BranchDataset.DFormer_Base"; model_name="DFormer_Base"
+    elif [[ "$name" == *"DFormer-Large"* ]]; then
+        cfg="local_configs.BranchDataset.DFormer_Large"; model_name="DFormer_Large"
+    else
+        echo "Nepoznat tip za $name, skip"
+        continue
+    fi
+
+    echo "=== Evaluacija $name ($ckpt_rel) ==="
+    PORT=$((PORT+1))
+
+    torchrun --nproc_per_node=$GPUS --master_port=$PORT utils/eval.py \
+        --config="$cfg" \
+        --gpus=$GPUS --no-sliding --no-compile --no-amp \
+        --continue_fpath="$ckpt_rel" > "/tmp/eval_${name}.log" 2>&1
+
+    log="/tmp/eval_${name}.log"
+
+    # izvuci RESULT_JSON liniju i pretvori je u CSV redak istog redoslijeda kolona kao header
+    python3 - "$log" "$model_name" >> "$OUT_CSV" <<'PYEOF'
+import sys, re, json
+
+log_path = sys.argv[1]
+model_name = sys.argv[2]
+
+result = None
+with open(log_path) as f:
+    for line in f:
+        m = re.search(r"RESULT_JSON:\s*(\{.*\})", line)
+        if m:
+            result = json.loads(m.group(1))
+
+cols = [
+    "overall_accuracy","pixel_accuracy","pixel_accuracy_fg",
+    "frequency_weighted_iou","frequency_weighted_iou_fg",
+    "mean_iou","mean_boundary_f1","branch_recall",
+    "iou_background","iou_trunk","iou_branches","iou_support",
+    "recall_background","recall_trunk","recall_branches","recall_support",
+    "boundary_f1_background","boundary_f1_trunk","boundary_f1_branches","boundary_f1_support",
+]
+
+if result is None:
+    print(f"{model_name}," + ",".join(["NA"] * len(cols)))
+else:
+    vals = [result.get(c, "NA") for c in cols]
+    print(f"{model_name}," + ",".join(str(v) for v in vals))
+PYEOF
+
+    echo "=== Gotovo: $name ==="
+done
+
+echo "=== SVE EVALUACIJE GOTOVE === Rezultati u $OUT_CSV"
